@@ -13,6 +13,9 @@ st.title("📚 Painel de Dados Educacionais do Espírito Santo")
 st.markdown("""
 Esta aplicação apresenta um MVP (Produto Mínimo Viável) como parte da avaliação da disciplina de Cloud Computing 
 para produtos de dados na Pós-graduação em Mineração de Dados.
+
+- Professor: Maxwell Monteiro
+- Aluno: Sandro Ricardo De Souza
 """)
 
 st.subheader("Objetivo do Projeto")
