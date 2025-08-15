@@ -22,7 +22,24 @@ Resultados do Ideb por Escola (Edição mais recente): Utilizado para obter os i
 
 A aplicação será desenvolvida em Python utilizando a biblioteca Streamlit. O controle de versão e o código-fonte serão gerenciados em um repositório no GitHub, e o deploy online da aplicação será feito através do Streamlit Community Cloud.
 
-## 4. Avaliação:
+## 4. Estrutura de arquivos
+
+```
+/
+├── .streamlit/
+│   └── config.toml
+├── data/
+│   └── amostra_escolas.csv
+├── pages/
+│   ├── 1_Mapa_Interativo.py
+│   ├── 2_Estatisticas_da_Escola.py
+│   └── 3_Indicadores_de_Qualidade.py
+├── app.py
+├── requirements.txt
+└── README.md
+```
+
+## 5. Avaliação:
 
 Construção em 5 etapas de um MVP baseado em dados
 
