@@ -35,7 +35,6 @@ A aplicação será desenvolvida em Python utilizando a biblioteca Streamlit. O 
 │   ├── 2_Estatisticas_da_Escola.py
 │   └── 3_Indicadores_de_Qualidade.py
 ├── app.py
-├── requirements.txt
 └── README.md
 ```
 
