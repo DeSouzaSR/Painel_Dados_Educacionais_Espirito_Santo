@@ -5,6 +5,8 @@ Projeto didático para disciplina de **Cloud Computing para produtos de dados** 
 - Professor: _Maxwell Monteiro_ 
 - Aluno: _Sandro Ricardo De Souza_
 
+### Link para o projeto publicado
+https://paineldadoseducacionaisespiritosanto-awc2zdfsj4srjzag6ydtkz.streamlit.app/
 
 ## 1. Definição do Tema e Objetivos:
 
