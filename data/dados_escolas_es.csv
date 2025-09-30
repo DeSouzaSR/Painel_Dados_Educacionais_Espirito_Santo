@@ -1,0 +1,21 @@
+NO_ENTIDADE;CO_ENTIDADE;NO_MUNICIPIO;IN_FUNDAMENTAL;IN_MEDIO;IDEB_ANOS_FINAIS;MEDIA_SAEB_MT;MEDIA_SAEB_LP;LATITUDE;LONGITUDE;TP_DEPENDENCIA;DS_ENDERECO
+Escola Pastor Getúlio Vargas 1;32010000;Vitória;1;0;4,6;264,1;260,8;-20,28037121492078;-40,288113818500236;Municipal;Rua Fictícia 1, Bairro Exemplo, Vitória
+Escola São Anísio Teixeira 2;32010001;Vitória;1;0;6,7;284,3;264,9;-20,284486391416884;-40,32446937914169;Municipal;Rua Fictícia 2, Bairro Exemplo, Vitória
+Escola Nossa Senhora do Brasil 3;32010002;Vitória;1;0;6,2;256,7;293,3;-20,30569370909653;-40,32677450314835;Privada;Rua Fictícia 3, Bairro Exemplo, Vitória
+EMEF São do Brasil 4;32010003;Vitória;1;0;5,8;278,3;258,1;-20,326657888926217;-40,282700040748736;Municipal;Rua Fictícia 4, Bairro Exemplo, Vitória
+Colégio Presidente Anísio Teixeira 5;32010004;Vitória;0;1;6,1;329,4;290,0;-20,253392121992153;-40,2347210448524;Municipal;Rua Fictícia 5, Bairro Exemplo, Vitória
+EMEF São Getúlio Vargas 1;32010005;Vila Velha;1;0;5,2;266,8;278,3;-20,32838138359743;-40,301264750979776;Municipal;Rua Fictícia 1, Bairro Exemplo, Vila Velha
+EMEF Presidente do Brasil 2;32010006;Vila Velha;1;1;5,6;266,0;275,0;-20,30723649557591;-40,313454330721505;Municipal;Rua Fictícia 2, Bairro Exemplo, Vila Velha
+EMEF Professor das Graças 3;32010007;Vila Velha;1;1;5,3;286,6;262,9;-20,399079956390402;-40,292302285770155;Estadual;Rua Fictícia 3, Bairro Exemplo, Vila Velha
+CEEFTI Presidente do Brasil 4;32010008;Vila Velha;1;0;5,7;262,5;249,8;-20,33530094586597;-40,29696176821623;Privada;Rua Fictícia 4, Bairro Exemplo, Vila Velha
+CEEFTI São da Penha 5;32010009;Vila Velha;1;0;6,0;261,3;273,9;-20,37048398452124;-40,274846946343594;Estadual;Rua Fictícia 5, Bairro Exemplo, Vila Velha
+CEEFTI Pastor das Graças 1;32010010;Serra;1;1;5,2;305,8;286,8;-20,114599412252147;-40,347206015852926;Municipal;Rua Fictícia 1, Bairro Exemplo, Serra
+Escola Pastor do Brasil 2;32010011;Serra;1;0;5,1;321,2;299,5;-20,163174809623843;-40,29274807921097;Municipal;Rua Fictícia 2, Bairro Exemplo, Serra
+EMEF Pastor Getúlio Vargas 3;32010012;Serra;0;1;6,8;275,4;303,3;-20,161013250455326;-40,266057571259815;Municipal;Rua Fictícia 3, Bairro Exemplo, Serra
+EEEFM Nossa Senhora da Penha 4;32010013;Serra;1;0;5,6;288,1;254,7;-20,08195540842614;-40,32912645084014;Privada;Rua Fictícia 4, Bairro Exemplo, Serra
+EEEFM Nossa Senhora José de Anchieta 5;32010014;Serra;1;0;4,9;266,6;250,3;-20,107021670771367;-40,23025361939475;Privada;Rua Fictícia 5, Bairro Exemplo, Serra
+EMEF Nossa Senhora Getúlio Vargas 1;32010015;Cariacica;0;1;6,4;311,7;312,7;-20,236182622828448;-40,39574594991047;Estadual;Rua Fictícia 1, Bairro Exemplo, Cariacica
+EEEFM Nossa Senhora Anísio Teixeira 2;32010016;Cariacica;1;0;5,7;270,7;262,9;-20,233758190214854;-40,42848731166917;Municipal;Rua Fictícia 2, Bairro Exemplo, Cariacica
+EEEFM Presidente do Brasil 3;32010017;Cariacica;1;1;5,7;276,2;268,9;-20,225447096832816;-40,378867577540746;Municipal;Rua Fictícia 3, Bairro Exemplo, Cariacica
+EEEFM Presidente Getúlio Vargas 4;32010018;Cariacica;1;1;6,3;274,7;310,7;-20,224071854838897;-40,40428271398333;Municipal;Rua Fictícia 4, Bairro Exemplo, Cariacica
+CEEFTI Professor da Penha 5;32010019;Cariacica;1;1;4,8;308,6;315,0;-20,25959401255749;-40,41014154292374;Estadual;Rua Fictícia 5, Bairro Exemplo, Cariacica

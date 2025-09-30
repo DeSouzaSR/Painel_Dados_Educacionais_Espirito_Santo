@@ -1,102 +1,108 @@
 import streamlit as st
+import pandas as pd
 
 # Configuração da página
 st.set_page_config(page_title="Estatísticas", layout="wide")
 
-st.title("📊 Estatísticas das Escolas")
-st.markdown("Filtre e selecione uma escola para visualizar seus dados detalhados.")
+# --- FUNÇÃO PARA CARREGAR OS DADOS DO ARQUIVO CSV ---
+@st.cache_data
+def carregar_dados():
+    try:
+        df = pd.read_csv('data/dados_escolas_es.csv', sep=';', decimal=',')
+        return df
+    except FileNotFoundError:
+        return pd.DataFrame()
 
-# --- INÍCIO DO LAYOUT ---
-# Dividimos a tela em duas colunas: 1 parte para filtros, 3 para os dados
+# Carrega os dados na inicialização da página
+df_escolas = carregar_dados()
+
+# --- LAYOUT DA PÁGINA ---
+st.title("📊 Estatísticas das Escolas")
+st.markdown("Filtre e selecione uma escola para visualizar seus dados detalhados e gráficos de desempenho.")
+
 col_filtro, col_dados = st.columns([1, 3])
 
-# --- CONTAINER DE FILTROS (1/4 da tela) ---
+# --- CONTAINER DE FILTROS (LADO ESQUERDO) ---
 with col_filtro:
     st.header("Filtros")
 
-    # Filtro de Cidade
-    cidade = st.selectbox(
-        "Selecione a cidade:",
-        ["Vitória", "Vila Velha", "Serra", "Cariacica"],
-        index=None,
-        placeholder="Escolha uma cidade"
-    )
+    if df_escolas.empty:
+        st.error("Arquivo 'data/dados_escolas_es.csv' não encontrado. Por favor, gere o arquivo e recarregue a página.")
+    else:
+        # Filtro de Cidade
+        cidade = st.selectbox(
+            "Selecione a cidade:",
+            sorted(df_escolas['NO_MUNICIPIO'].unique().tolist()),
+            index=None,
+            placeholder="Escolha uma cidade"
+        )
+        
+        df_filtrado = df_escolas.copy()
+        if cidade:
+            df_filtrado = df_escolas[df_escolas['NO_MUNICIPIO'] == cidade]
 
-    # Filtros de Etapa de Ensino
-    st.markdown("**Etapa de Ensino:**")
-    ensino_fundamental = st.checkbox("Ensino Fundamental")
-    ensino_medio = st.checkbox("Ensino Médio")
+        # Filtros de Etapa de Ensino
+        st.markdown("**Etapa de Ensino:**")
+        fundamental = st.checkbox("Ensino Fundamental")
+        medio = st.checkbox("Ensino Médio")
+        if fundamental:
+            df_filtrado = df_filtrado[df_filtrado['IN_FUNDAMENTAL'] == 1]
+        if medio:
+            df_filtrado = df_filtrado[df_filtrado['IN_MEDIO'] == 1]
 
-    # Filtro/Lista de Escolas
-    escola = st.selectbox(
-        "Selecione a escola:",
-        ["Selecione os filtros acima"],
-        disabled=True
-    )
-    st.caption("Clique em uma escola na lista para ver os detalhes.")
-    
-    st.write("") # Espaço vertical
-    
-    # Botão para limpar
-    st.button("Limpar Filtros e Seleção", use_container_width=True)
+        # Filtro de Escola
+        escola_selecionada = st.selectbox(
+            "Selecione a escola:",
+            sorted(df_filtrado['NO_ENTIDADE'].unique().tolist()),
+            index=None,
+            placeholder="Selecione uma escola nos filtros"
+        )
 
-    st.info("Observação: A interatividade dos filtros será implementada na próxima etapa.")
-
-
-# --- CONTAINER DE DADOS (3/4 da tela) ---
+# --- PAINEL DE DADOS (LADO DIREITO) ---
 with col_dados:
-    # Injetamos o CSS para estilizar o container de dados
-    st.markdown("""
-    <style>
-    .data-container {
-        background-color: #f0f2f6;
-        border-radius: 10px;
-        padding: 2rem;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .data-container h3 {
-        color: #0044ff; /* Cor azul para o nome da escola */
-        margin-top: 0;
-    }
-    </style>
-    """, unsafe_allow_html=True)
+    if not escola_selecionada:
+        st.info("👈 Por favor, selecione uma escola no painel de filtros para visualizar os detalhes.")
+    else:
+        dados_escola = df_escolas[df_escolas['NO_ENTIDADE'] == escola_selecionada].iloc[0]
 
-    # Criamos o container visual usando markdown com a classe CSS
-    st.markdown("""
-    <div class="data-container">
-        <h3>Nome da Escola de Exemplo (Fictício)</h3>
-        <p><strong>INEP:</strong> 12345678</p>
-        <p><strong>Endereço:</strong> Rua Exemplo, 123, Bairro dos Sonhos, Vitória - ES</p>
+        with st.container(border=True):
+            st.markdown(f"### {dados_escola['NO_ENTIDADE']}")
+            st.write(f"**Cidade:** {dados_escola['NO_MUNICIPIO']}")
+            st.write(f"**Endereço:** {dados_escola['DS_ENDERECO']}")
+            
+            info1, info2, info3 = st.columns(3)
+            info1.metric("Código INEP", dados_escola['CO_ENTIDADE'])
+            info2.metric("Rede de Ensino", dados_escola['TP_DEPENDENCIA'])
+            
+            etapas = []
+            if dados_escola['IN_FUNDAMENTAL'] == 1: etapas.append("Fundamental")
+            if dados_escola['IN_MEDIO'] == 1: etapas.append("Médio")
+            info3.metric("Etapas Ofertadas", ", ".join(etapas))
+
+        st.write("") 
+
+        st.subheader("Gráficos de Desempenho")
         
-        <hr> <!-- Linha divisória -->
-
-        <h4>Indicadores de Qualidade</h4>
+        graf1, graf2 = st.columns(2)
         
-        <!-- Colunas internas para organizar os indicadores -->
-    </div>
-    """, unsafe_allow_html=True)
+        with graf1:
+            st.markdown("##### Notas Médias - SAEB")
+            
+            # --- CÓDIGO CORRIGIDO ---
+            # 1. Crie um DataFrame com as notas em colunas separadas
+            df_saeb_chart = pd.DataFrame({
+                "Língua Portuguesa": [dados_escola['MEDIA_SAEB_LP']],
+                "Matemática": [dados_escola['MEDIA_SAEB_MT']]
+            })
 
-    # Para os indicadores, podemos usar st.metric que já tem um bom design
-    # E vamos colocá-los dentro de colunas para ficarem lado a lado
-    # Acessar o container "invisível" que o Streamlit cria para a coluna `col_dados`
-    
-    st.write("") # Espaço para alinhar com o conteúdo do markdown acima
-    
-    metric_cols = st.columns(4)
-    with metric_cols[0]:
-        st.metric(label="IDEB (Anos Finais)", value="6.5")
-    with metric_cols[1]:
-        st.metric(label="SAEB (Matemática)", value="280.2")
-    with metric_cols[2]:
-        st.metric(label="Latitude", value="-20.3155")
-    with metric_cols[3]:
-        st.metric(label="Longitude", value="-40.3128")
+            # 2. Use st.bar_chart. Agora você tem 2 colunas e 2 cores, o que funciona.
+            st.bar_chart(
+                df_saeb_chart,
+                color=["#FF4B4B", "#0044FF"] 
+            )
 
-    st.write("")
-    st.markdown("<h5>Etapas de Ensino Ofertadas:</h5>", unsafe_allow_html=True)
-    
-    tag_cols = st.columns(5)
-    with tag_cols[0]:
-        st.success("✔ Ensino Fundamental")
-    with tag_cols[1]:
-        st.success("✔ Ensino Médio")
+        with graf2:
+            st.markdown("##### Nota - IDEB (Anos Finais)")
+            st.metric("IDEB", dados_escola['IDEB_ANOS_FINAIS'])
+            st.caption("A nota do IDEB refere-se aos anos finais do Ensino Fundamental.")
+
