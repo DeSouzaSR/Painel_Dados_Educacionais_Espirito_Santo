@@ -46,7 +46,7 @@ Construção em 5 etapas de um MVP baseado em dados
 
 - [x] Etapa 1 - 10%: Esboço (definição de tema e escolha de dados);
 - [x] Etapa 2 - 20%: Versão de baixa Estética e usabilidade Sem os dados;
-- [ ] Etapa 3 - 20%: Versão de baixa Estética e usabilidade Com os dados;
+- [x] Etapa 3 - 20%: Versão de baixa Estética e usabilidade Com os dados;
 - [ ] Etapa 4 - 20%: Validação com usuários (outros alunos);
 - [ ] Etapa 5 - 30%: Finalização do MVP.
 
